@@ -18,7 +18,9 @@ class UserDetail < ApplicationRecord
 	
 	validates :alt_email, format: {with:/\A[a-z0-9.\-_]+\@[a-z]+\.(com|org|co.in|in)\z/,  message:"is not valid, please enter valid email"}, allow_blank:true
 
-	validates :pan_no, presence:{message:"Required for customer"}, format: {with:/\A[A-Za-z]{5}[0-9]{4}[A-Za-z]\z/,  message:"is not valid, please enter valid Pan Number"}, if: :check	
+	validates :pan_no, presence:{message:"Required for customer"}, if: :check
+
+	validates :pan_no, format: {with:/\A[A-Za-z]{5}[0-9]{4}[A-Za-z]\z/,  message:"is not valid, please enter valid Pan Number"}
 
 	validates :aadhar_no, presence:{message:"Required for customer"}, if: :check
 
