@@ -10,7 +10,6 @@
 #Entering Data in table customers
 # rand =Random.new
 100.times do 
-	# subtotal = (rand(100..1000)/100)*18
 	# customer = Customer.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, title: Faker::Name.prefix, email: Faker::Internet.email, visits:rand(1..5), order_count:rand(1..10))
 	# supplier = Supplier.create(name: Faker::Name.unique.name)
 	# author = Author.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, )
@@ -22,7 +21,7 @@
 # puts "Adding #{Supplier.count} to Supplier Table"
 # puts "Adding #{Author.count} to Author Table"
 # puts "Adding #{Book.count} to book Table"
-puts "Adding #{Order.count} to order Table"
+# puts "Adding #{Order.count} to order Table"
 
 
 

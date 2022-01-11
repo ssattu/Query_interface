@@ -1,0 +1,79 @@
+<h1 class="d-flex justify-content-around">Create new User</h1>
+<%= form_with model: @user, url: user_details_new_path do |form| %>
+<section class="d-block m-auto d-flex justify-content-center">
+    <div class="m-4">
+        <%= form.label :first_name, "First Name :"%><br>
+        <%= form.text_field :first_name , class:'input form-control'%><br>
+        <%= form.label :last_name, "Last Name :"%><br>
+        <%= form.text_field :last_name, class:'input form-control' %><br>
+        <%= form.label :phone_no, "Phone no. :"%><br>
+        <%= form.text_field :phone_no , class:'input form-control'%><br>
+        <%= form.label :alt_phone_no, "Alternate Phone no. :"%><br>
+        <%= form.text_field :alt_phone_no, class:'input form-control' %><br>
+        <%= form.label :profile_bio, "Profile Bio :"%><br>
+        <%= form.text_area :profile_bio, size: 100*5, class:'input form-control' %><br>
+        <%= form.label :address, "Address :"%><br>
+        <%= form.text_area :address, size:100*2, class:'input form-control' %><br>
+        <%= form.label :email, "Email :"%><br>
+        <%= form.text_field :email, class:'input form-control' %><br>
+        <%= form.label :alt_email, "Alternate Email :"%><br>
+        <%= form.text_field :alt_email , class:'input form-control'%><br>
+        <%= form.label :user_type, "User Type :"%><br>
+        <%= form.radio_button :user_type, "Admin" %>
+        <%= form.label :user_type_admin, "Admin"%><br>
+        <%= form.radio_button :user_type, "Customer" %>
+        <%= form.label :user_type_customer, "Customer"%><br>
+        <%= form.label :pan_no, "Pan No. :"%><br>
+        <%= form.text_field :pan_no , class:'input form-control'%><br>
+        <%= form.label :aadhar_no, "Aadhar No. :"%><br>
+        <%= form.text_field :aadhar_no, class:'input form-control' %><br>
+        <%= form.label :password, "Password :"%><br>
+        <%= form.password_field :password, class:'input form-control'%><br>
+        <div class="d-flex justify-content-center m-3">
+            <button type="submit" class="btn-primary btn">Submit<br>
+        </div>
+    </div>
+</section>
+<%end%>
+<script>
+    var submit = document.querySelector(".btn");
+
+    submit.addEventListener('click', function() {
+        inputs();
+    });
+    
+
+    function inputs() {
+        var input = document.querySelectorAll(".input");
+
+            var regexName = /^[a-zA-Z]+(\s+)?$/;
+            var regexAdd = /^(.{20,})$/
+            var regexbio = /^(.{30,})$/
+            var regexaadhar = /^[0-9]{4}-[0-9]{4}-[0-9]{4}$/
+            var regexEmail = /^[a-z0-9.-_]+@[a-zA-Z]+\.(com|org)$/;
+            var regexPhone = /^(\+\d{1,2}\s)?\(?\d{4}\)?[\s.-]*\d{2}[\s.-]*\d{4}$/;
+            var regexPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+            var regexpan = /^[A-Za-z]{5}[0-9]{4}[A-Za-z]$/
+            //array of alerts 
+            var alerts = ["First Name is required ", "Last Name is required","Please Enter Mobile No.","", "Please write brief about yourself", "Address: Is required","Enter Email ID", "","Please Enter Pan No.","Please enter Aadhar No.","Please choose any Password"]
+            var alert1 = ["First name only Contains only alphabets", "Last name only Contains only alphabets","Enter Valid Phone No. (only 10 digit and contains only numbers)","Enter Valid Phone No. (only 10 digit and contains only numbers)", "", "", "Enter valid email (abc@gmail.com)", "Enter valid email (abc@gmail.com)", " Enter Valid Pan No. (ABCDe1234C)", " Enter Valid aadhar no. (1234-5678-1234)", "Password must contain 8 characters or more, Contains one caps Alphabet, one digit and atleast one special character"]
+            // console.log(alert1.length);
+            //array of regexp
+            var regex = [regexName, regexName,regexPhone, regexPhone, regexbio, regexAdd, regexEmail, regexEmail,  regexpan, regexaadhar, regexPass]
+            // console.log(regex[j]);
+            var altArr = [];
+
+            for (i = 0; i <= 10; i++) {
+                if (!regex[i].test(input[i].value) && input[i].value != "") {
+                    console.log(input[i].value);
+                    alert(alert1[i]);
+                    break;
+                
+                } else if (input[i].value == "") {
+                    altArr.push((alerts[i]))
+                
+                }
+            }
+                    alert(altArr);
+    };
+</script>

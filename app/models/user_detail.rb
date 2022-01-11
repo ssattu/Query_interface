@@ -4,7 +4,7 @@ class UserDetail < ApplicationRecord
 	
 	validates :last_name, length: {minimum:3, message:"have more than three character"}, format: {with:/\A[A-Za-z]+\z/,  message:"Only Allows character"}
 	
-	validates :phone_no, uniqueness:true, length: {is:10, message:"have 10 digits only"}, format: {with:/\A[0-9]{10}\z/, message:"Only Allows number (0-9) and must be of 10 digits"}
+	validates :phone_no, length: {is:10, message:"have 10 digits only"}, format: {with:/\A[0-9]{10}\z/, message:"Only Allows number (0-9) and must be of 10 digits"}
 	
 	validates :profile_bio, length: {minimum:30, message:"should have more than 30 characters"}
 	
@@ -12,21 +12,21 @@ class UserDetail < ApplicationRecord
 	
 	validates :password, length: {in:6..20, message:"must be more than 6 characters and less than 20 characters"}, format: {with:/\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*#?&]{6,}\z/,  message:"must contains atleast 1 uppercase character, atleast 1 lowercase character, atleast 1 digit, and atleast 1 special character."}
 	
-	validates :email, uniqueness:true, format: {with:/\A[a-z0-9.\-_]+\@[a-z]+\.(com|org|co.in|in)\z/,  message:"is not valid, please enter valid email"}
+	validates :email, format: {with:/\A[a-z0-9.\-_]+\@[a-z]+\.(com|org|co.in|in)\z/,  message:"is not valid, please enter valid email"}
 	
 	validates :alt_phone_no, length: {is:10, message:"have 10 digits only"}, format: {with:/\A[0-9]{10}\z/, message:"Only Allows number (0-9) and must be of 10 digits"}, allow_blank:true
 	
-	validates :alt_email, format: {with:/\A[a-z0-9.\-_]+\@[a-z]+\.(com|org|co.in|in)\z/,  message:"is not valid, please enter valid email"}, allow_blank:true
+	validates :alt_email, format: {with:/\A[a-z0-9.\-_]+\@[a-z]+\.(com|org|co.in|in)\z/,  message:"is not valid, please enter valid email"}, allow_nil:true
 
 	validates :pan_no, presence:{message:"Required for customer"}, if: :check
 
-	validates :pan_no, format: {with:/\A[A-Za-z]{5}[0-9]{4}[A-Za-z]\z/,  message:"is not valid, please enter valid Pan Number"}
+	validates :pan_no, format: {with:/\A[A-Za-z]{5}[0-9]{4}[A-Za-z]\z/,  message:"is not valid, please enter valid Pan Number"}, allow_nil:true
 
 	validates :aadhar_no, presence:{message:"Required for customer"}, if: :check
 
-	validates :aadhar_no, format: {with:/\A[0-9]{4}-[0-9]{4}-[0-9]{4}\z/,  message:"is not valid, please enter valid Aadhar Number"}
+	validates :aadhar_no, format: {with:/\A[0-9]{4}-[0-9]{4}-[0-9]{4}\z/,  message:"is not valid, please enter valid Aadhar Number"}, allow_nil:true
 
-	enum :user_type, [:admin, :customer]
+	enum :user_type, [:Admin, :Customer]
 
 	def check
 		user_type=="customer"
